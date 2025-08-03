@@ -1,0 +1,477 @@
+// 모바일 최적화 스타일
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// 터치 최적화
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// 모바일에서 더 나은 터치 경험
+.capture-button {
+  transition: all 0.2s ease;
+  
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+// 카메라 가이드 라인 애니메이션
+.camera-guide {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+// 분석 진행 애니메이션
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+// 스트리밍 텍스트 애니메이션
+.streaming-text {
+  animation: slideIn 0.3s ease-out;
+  
+  .typing-cursor {
+    animation: typing 1s infinite;
+  }
+}
+
+// 진행 상태 애니메이션
+.progress-indicator {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// z-index 계층 구조
+.camera-container {
+  position: relative;
+  
+  // 기본 레이어
+  video, img {
+    z-index: 1;
+  }
+  
+  // 가이드 오버레이
+  .camera-guide {
+    z-index: 10;
+  }
+  
+  // 촬영 버튼
+  .capture-button {
+    z-index: 20;
+  }
+  
+  // 상단 UI
+  .absolute.top-0 {
+    z-index: 30;
+  }
+  
+  // 하단 UI
+  .absolute.bottom-0 {
+    z-index: 20;
+  }
+}
+
+// 모바일 세로 모드 최적화
+@media (orientation: portrait) {
+  .camera-container {
+    height: 100vh;
+  }
+  
+  .capture-button {
+    width: 80px;
+    height: 80px;
+  }
+  
+  // 하단 여백 확보
+  .absolute.bottom-0 {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+// 모바일 가로 모드 최적화
+@media (orientation: landscape) {
+  .camera-container {
+    height: 100vh;
+  }
+  
+  .capture-button {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+// 작은 화면 최적화
+@media (max-width: 480px) {
+  .ui-button {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .capture-button {
+    width: 70px;
+    height: 70px;
+  }
+  
+  // 터치 영역 확장
+  .capture-button {
+    padding: 10px;
+  }
+}
+
+// 큰 화면 최적화
+@media (min-width: 768px) {
+  .capture-button {
+    width: 100px;
+    height: 100px;
+  }
+  
+  // 큰 화면에서 텍스트 영역 확장
+  .streaming-text, .completed-text {
+    max-height: 60vh !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+// 접근성 개선
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+  .camera-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+// 터치 영역 개선
+.ui-button {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 촬영 버튼 터치 영역 확장
+.capture-button {
+  min-width: 80px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 480px) {
+    min-width: 70px;
+    min-height: 70px;
+  }
+}
+
+// 텍스트 표시 영역 스타일
+.text-display-area {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  backdrop-filter: blur(10px);
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(75, 85, 99, 0.3);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba(156, 163, 175, 0.7);
+    }
+  }
+}
+
+// 귀여운 AI 분석 애니메이션
+.ai-robot-animation {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  animation: float 3s ease-in-out infinite;
+  
+  .robot-face {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .robot-eyes {
+      display: flex;
+      gap: 8px;
+      
+      .eye {
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: blink 2s infinite;
+        
+        &.left-eye {
+          animation-delay: 0s;
+        }
+        
+        &.right-eye {
+          animation-delay: 0.5s;
+        }
+      }
+    }
+    
+    .robot-mouth {
+      position: absolute;
+      bottom: 15px;
+      width: 20px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      animation: talk 1s ease-in-out infinite;
+    }
+  }
+  
+  .robot-body {
+    text-align: center;
+    
+    .processing-dots {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 10px;
+      
+      .dot {
+        width: 6px;
+        height: 6px;
+        background: #3b82f6;
+        border-radius: 50%;
+        animation: pulse-dot 1.4s ease-in-out infinite both;
+        
+        &:nth-child(1) { animation-delay: -0.32s; }
+        &:nth-child(2) { animation-delay: -0.16s; }
+        &:nth-child(3) { animation-delay: 0s; }
+      }
+    }
+  }
+  
+  .robot-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+.ai-spinner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  
+  .spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    
+    &:nth-child(1) {
+      animation-duration: 1s;
+    }
+    
+    &:nth-child(2) {
+      animation-duration: 1.5s;
+      animation-direction: reverse;
+      border-top-color: #10b981;
+    }
+    
+    &:nth-child(3) {
+      animation-duration: 2s;
+      border-top-color: #f59e0b;
+    }
+  }
+  
+  .ai-brain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    animation: brain-pulse 2s ease-in-out infinite;
+  }
+}
+
+.progress-bubble {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 25px;
+  padding: 15px 25px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(59, 130, 246, 0.6);
+  animation: bounce 2s ease-in-out infinite;
+  
+  .progress-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .progress-bar {
+    width: 150px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      animation: progress-glow 2s ease-in-out infinite;
+    }
+  }
+}
+
+// 애니메이션 키프레임
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blink {
+  0%, 90%, 100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+}
+
+@keyframes talk {
+  0%, 100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.2);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6, 0 0 15px #3b82f6;
+  }
+  to {
+    text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 30px #3b82f6;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes brain-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes progress-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+}

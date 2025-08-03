@@ -1,0 +1,7 @@
+<div class="app-container">
+  <!-- 알림 배지 -->
+  <app-notification-badge *ngIf="!isLoginRoute()" class="notification-badge-container"></app-notification-badge>
+  
+  <router-outlet></router-outlet>
+  <app-bottom-nav *ngIf="!isLoginRoute()"></app-bottom-nav>
+</div>

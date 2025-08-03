@@ -1,0 +1,29 @@
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+  <div class="flex justify-around">
+    <a 
+      routerLink="/home"
+      routerLinkActive="text-blue-600"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex flex-col items-center py-2 px-3"
+    >
+      <span class="material-icons">home</span>
+      <span class="text-xs mt-1">홈</span>
+    </a>
+    <a 
+      routerLink="/camera"
+      routerLinkActive="text-blue-600"
+      class="flex flex-col items-center py-2 px-3"
+    >
+      <span class="material-icons" style="background-color:#2563eb;color:white;border-radius:50%;padding:6px;">add</span>
+      <span class="text-xs mt-1">촬영</span>
+    </a>
+    <a class="flex flex-col items-center py-2 px-3 text-gray-500">
+      <span class="material-icons">trending_up</span>
+      <span class="text-xs mt-1">트렌드</span>
+    </a>
+    <a class="flex flex-col items-center py-2 px-3 text-gray-500">
+      <span class="material-icons">person</span>
+      <span class="text-xs mt-1">프로필</span>
+    </a>
+  </div>
+</div>
